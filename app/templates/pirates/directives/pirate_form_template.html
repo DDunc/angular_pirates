@@ -1,0 +1,11 @@
+<form data-ng-submit='save({pirate: pirate})'>
+  <label><h3>{{title}}</h3></label><br/>
+  <label>Pirate Name</label>
+  <input type='text' data-ng-model='pirate.pirateName' required><br/>
+  <label>Hobbies:</label>
+  <input type='text' data-ng-model='pirate.hobbies' required><br/>
+  <label>Pirate Portrait URL:</label>
+  <input type='text' data-ng-model='pirate.picture'><br/>
+  <button type='submit'>{{buttonText}}</button>
+  <button type='button' data-ng-click='cancel({pirate: pirate})'>Cancel</button>
+</form>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel='stylesheet' href='style.css'>
+  <meta charset="UTF-8">
+  <title>PirateSpace: MySpace for pirates</title>
+</head>
+<body data-ng-app="piratesApp">
+  <main data-ng-controller="PiratesController" data-ng-init="getPirates()">
+    <h1 data-ng-cloak>Pirates App:</h1>
+      <content>
+        Pirates make many important contributions to our eocnomy.
+        <br/>
+        <br/>
+        <section data-ng-repeat="pirate in pirates">
+          <article data-ng-if='!pirate.editing'>
+            <h2>{{pirate.pirateName}}</h2>
+            <img ng-src="{{pirate.picture}}" height="200" width="150"/><br>
+            <h3 class='pendingDelete' data-ng-if='pirate.pendingDelete'>Deleting...</h3>
+            <h3 class='pendingUpdate' data-ng-if='pirate.pendingUpdate'>Updating...</h3>
+            Hobbies:
+            <ul>
+              <li data-ng-repeat="hobbies in pirate.hobbies.split(' ')">
+                {{hobbies}}
+              </li>
+            </ul>
+            <p>{{pirate.pirateBody}}</p>
+            <br>
+            <button data-ng-click='beginEdit(pirate)'>Edit Pirate</button>
+            <button data-ng-click='sing(pirate); deletePirate(pirate)'>Delete</button>
+          </article>
+          <article data-ng-if='pirate.editing'>
+            <div data-pirate-form
+                 data-pirate='pirate'
+                 data-button-text='Save Changes'
+                 data-title='Edit Pirate'
+                 data-save='updatePirate(pirate)'
+                 data-cancel='cancelEdit(pirate)'>
+            </div>
+                 <!--    <button type='submit' data-ng-disabled='{{pirate.pirateName.join("")}}edit.$invalid'>Save Changes</button> -->
+          </article>
+        </section>
+        <hr>
+        <section>
+          <div data-pirate-form
+               data-pirate='newPirate'
+               data-button-text='Create Pirate'
+               data-title='New Pirate'
+               data-save='createPirate(pirate)'
+               data-cancel='clearNewPirate()'>
+          </div>
+        </section>
+      </content>
+  </main>
+  <script src='bundle.js'></script>
+</body>
+</html>
