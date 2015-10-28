@@ -1,3 +1,6 @@
+Angular Pirates
+====================
+
 ## Synopsis
 
 This web app lets you upload your favorite pirates, their hobbies, and a picture of them to a database, then view and edit your pirates.
